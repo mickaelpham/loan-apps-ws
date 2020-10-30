@@ -4,6 +4,8 @@ require 'sinatra'
 require 'net/http'
 require 'json'
 
+require_relative 'credit_bureau_gateway'
+
 set :port, 80
 set :bind, '0.0.0.0'
 
@@ -13,11 +15,7 @@ post '/loan-request' do
 
   logger.info "received loan request for #{data[:name]}"
 
-  # Fetch the credit score from the credit bureau
-  uri = URI("http://credit-bureau/credit-score?ssn=#{data[:ssn]}")
-  body = Net::HTTP.get(uri)
-  credit_bureau = JSON.parse(body, symbolize_names: true)
-
+  credit_bureau = CreditBureauGateway.credit_score(data[:ssn])
   logger.info "retrieved credit score #{credit_bureau[:credit_score]}"
 
   response = {
