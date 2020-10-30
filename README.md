@@ -4,7 +4,8 @@ Sample application using REST Web Services
 
 ![WS Design](./web-service-design.gif)
 
-([Source](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingWS.html))
+Credits:
+[Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingWS.html)
 
 ## Requirements
 
@@ -13,6 +14,8 @@ Sample application using REST Web Services
 
 ## Getting Started
 
-```
+```sh
+git clone https://github.com/mickaelpham/loan-apps-ws
+cd loan-apps-ws
 docker-compose up
 ```
