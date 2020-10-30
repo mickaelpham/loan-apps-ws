@@ -18,6 +18,7 @@ post '/loan-request' do
   credit_bureau = CreditBureauGateway.credit_score(data[:ssn])
   logger.info "retrieved credit score #{credit_bureau[:credit_score]}"
 
+
   response = {
     full_name: data[:name],
     social_security: data[:ssn],
