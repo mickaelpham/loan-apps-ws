@@ -2,7 +2,22 @@ version: "3.8"
 services:
   credit-bureau:
     build: ./credit-bureau
+    volumes:
+      - ./credit-bureau:/app
+
   loan-broker:
     build: ./loan-broker
     ports:
-      - "4567:80"
+      - 4567:80
+    volumes:
+      - ./loan-broker:/app
+
+  magica-de-spell-bank:
+    build: ./magica-de-spell-bank
+    volumes:
+      - ./magica-de-spell-bank:/app
+
+  scrooge-mcduck-bank:
+    build: ./scrooge-mcduck-bank
+    volumes:
+      - ./scrooge-mcduck-bank:/app

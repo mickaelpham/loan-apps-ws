@@ -2,5 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'thin'
+ruby File.read('.ruby-version').chomp
+
+gem 'rubocop'

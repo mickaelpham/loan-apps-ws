@@ -18,27 +18,27 @@ RULES = {
 #
 #   Sample Request:
 #   {
-#     "person": "John Doe",
-#     "credit_score": 750
+#     "CreditScore": 750,
+#     "Amount": 1000
 #   }
 #
 #   Sample Response:
 #   {
-#     "approved": true,
+#     "Approved": true,
 #     "interest_rate": 0.25
 #   }
 #
 post '/loans' do
   request.body.rewind # in case someone already read it
 
-  loan_request = JSON.parse(request.body.read, symbolize_names: true)
-  logger.info "received loan request for #{data[:person]} with credit score #{data[:credit_score}"
+  loan_request = JSON.parse(request.body.read)
+  logger.info "received loan request for #{loan_request['Amount']} with credit score #{loan_request['CreditScore']}"
 
-  rule_key = RULES.keys.detect { |ceiling| loan_request[:credit_score] <= ceiling }
+  rule_key = RULES.keys.detect { |ceiling| loan_request['CreditScore'] <= ceiling }
 
   response = {
-    approved: true,
-    interest_rate: RULES[rule_key]
+    'Approved' => true,
+    'InterestRate' => RULES[rule_key]
   }
 
   [201, { 'Content-Type' => 'application/json' }, response.to_json]

@@ -2,9 +2,9 @@
 
 class LenderList
   RULES = {
-    500 => %w[scrooge-mcduck-bank magica-de-spell-bank],
-    750 => %w[scrooge-mcduck-bank beagle-boys-bank],
-    850 => %w[scrooge-mcduck-bank goldie-ogilt-bank]
+    500 => %w[ScroogeMcDuckBank MagicaDeSpellBank],
+    750 => %w[ScroogeMcDuckBank BeagleBoysBank GoldieOGiltBank],
+    850 => %w[ScroogeMcDuckBank GoldieOGiltBank]
   }.freeze
 
   def self.for_credit_score(credit)

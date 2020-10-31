@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
-require 'dry/inflector'
-
+require_relative 'gateways/beagle_boys_bank_gateway'
+require_relative 'gateways/goldie_ogilt_bank_gateway'
+require_relative 'gateways/magica_de_spell_bank_gateway'
+require_relative 'gateways/scrooge_mcduck_bank_gateway'
 require_relative 'lender_list'
 
 class BestQuote
-  attr_reader :credit_score, :inflector
+  attr_reader :credit_score, :amount
 
-  def initialize(credit_score)
+  def initialize(credit_score, amount)
     @credit_score = credit_score
-
-    # used to convert from snake_case to (Upper) CamelCase
-    @inflector = Dry::Inflector.new
+    @amount = amount
   end
 
-  def exec
-    quotes = bank_gateways.map { |bank| bank.quote(credit_score) }
+  def call
+    quotes = bank_gateways.map { |bank| bank.new.quote(credit_score, amount) }
 
-    quotes.min_by { |q| q[:interest_rate] }
+    quotes
+      .filter { |q| q[:approved] }
+      .min_by { |q| q[:interest_rate] }
   end
 
   private
 
   def bank_gateways
     lender_list.map do |bank_name|
-      class_name = "#{inflector.camelize(bank_name)}Gateway"
-
-      Object.const_get(class_name)
+      Object.const_get("#{bank_name}Gateway")
     end
   end
 
