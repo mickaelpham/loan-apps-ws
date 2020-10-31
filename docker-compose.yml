@@ -1,5 +1,8 @@
 version: "3.8"
 services:
+  beagle-boys-bank:
+    build: ./beagle-boys-bank
+
   credit-bureau:
     build: ./credit-bureau
     volumes:
