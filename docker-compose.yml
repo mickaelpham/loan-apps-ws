@@ -8,6 +8,9 @@ services:
     volumes:
       - ./credit-bureau:/app
 
+  goldie-ogilt-bank:
+    build: ./goldie-ogilt-bank
+
   loan-broker:
     build: ./loan-broker
     ports:
