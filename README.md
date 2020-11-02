@@ -14,7 +14,7 @@ Credits:
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-Then close the repository and start the web servers:
+Then clone the repository and start the web servers:
 
 ```sh
 git clone https://github.com/mickaelpham/loan-apps-ws
